@@ -70,6 +70,7 @@ function M.setup()
       { name = 'emoji' },
       { name = "path" },
       { name = "luasnip" },
+      { name = "vim-dadbod-completion" },
     },
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),

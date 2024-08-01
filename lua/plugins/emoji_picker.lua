@@ -4,7 +4,7 @@ return {
   opts = {
     window = {
       width = 25,
-      height = 10,
+      height = 15,
     },
     emoji_list = {
       "😀😃😄😁😆🥹😅😂🤣🥲😊😇",
