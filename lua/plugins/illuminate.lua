@@ -1,7 +1,7 @@
 return {
   'RRethy/vim-illuminate',
   opts = {
-    color = "#A0A0A0",
+    delay = 50,
   },
   config = function(_, opts)
     require('illuminate').configure(opts)

@@ -1,3 +1,3 @@
 require("config")
 
-vim.cmd("colorscheme tokyonight")
+vim.cmd.colorscheme(theme_name)
