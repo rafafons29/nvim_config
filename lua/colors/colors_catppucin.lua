@@ -6,7 +6,7 @@ return {
   normal = '#cba6f7',
   bg_b_y = '#11111b',
 
-  base = '#11111b',
+  base = '#11111c',
   cyan = '#74c7ec',
   green = '#a6e3a1',
   red = '#f38ba8',

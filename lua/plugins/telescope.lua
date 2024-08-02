@@ -6,7 +6,7 @@ return {
     'nvim-telescope/telescope-media-files.nvim',
     {
       'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make'
+      build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
     }
   },
   opts = {
@@ -26,9 +26,12 @@ return {
         find_cmd = "rg"
       },
       file_browser = {
-        theme = "dropdown",
+        theme = "dropdown", -- ivy, dropdown, cursor
         -- disables netrw and use telescope-file-browser in its place
         hijack_netrw = true,
+        previewer = false,
+        initial_mode = "normal",
+        layout_config = { height = 20, width = 110 },
         mappings = {
           -- your custom insert mode mappings
           ["i"] = {
@@ -91,7 +94,7 @@ return {
         grouped = true,
         previewer = false,
         initial_mode = "normal",
-        layout_config = { height = 20 }
+        layout_config = { height = 20, width = 110 }
       })
     end)
   end,
