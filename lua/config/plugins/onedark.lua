@@ -30,8 +30,7 @@ function M.setup()
       CursorLineNr = { fg = colors.blue },
 
       MiniIndentscopeSymbol = { fg = colors.fg_b_y },
-
-      TreesitterContext = { bg = colors.base },
+      TreesitterContext = { bg = '#232326' },
 
       TelescopeNormal = { bg = colors.bg_dark, fg = colors.fg_dark },
       TelescopePromptBorder = { bg = "#32363a", fg = "#32363a" },

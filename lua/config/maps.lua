@@ -59,3 +59,7 @@ keymap.set('n', '<C-w>=', cmd 'WindowsEqualize')
 
 keymap.set('n', 'ff', cmd 'FZF', { desc = "Search and open files using fzf" })
 keymap.set('n', 'fzf', cmd 'FZF!', { desc = "Search and open files using fzf" })
+
+keymap.set('n', '<leader>dr', function() require("dap").continue() end, { noremap = true, silent = true })
+keymap.set('n', '<leader>dq', function() require("dap").close() end, { noremap = true, silent = true })
+keymap.set('n', '<leader>db', function() require("dap").toggle_breakpoint() end, { noremap = true, silent = true })

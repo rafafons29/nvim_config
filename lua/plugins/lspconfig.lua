@@ -1,11 +1,11 @@
 local servers = require("servers.servers")
 local lspf = require("servers.lsp_functions")
-local nvim_lsp = require("lspconfig")
+-- local nvim_lsp = require("lspconfig")
 
 return {
   'neovim/nvim-lspconfig',
   dependencies = { 'hrsh7th/nvim-compe', 'L3MON4D3/LuaSnip' }, -- Asumiendo que usas compe y LuaSnip
-  opts = {},                                                   -- Deja esto vacío ya que la configuración está en otros archivos
+  opts = {},
   config = function()
     local function setup_autocmd(filetype, setup_func)
       vim.api.nvim_create_autocmd('FileType', {
@@ -40,27 +40,27 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    vim.keymap.set('n', '<leader>lv', function()
-      nvim_lsp.lua_ls.setup {
-        on_attach = function(client, bufnr)
-          lspf.on_attach(client, bufnr)
-          lspf.enable_format_on_save(client, bufnr)
-        end,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
-            },
-            workspace = {
-              library = lspf.loadfolder(true),
-              checkThirdParty = false,
-            },
-          },
-        },
-      }
-      vim.cmd('LspStop lua_ls')
-      vim.cmd('LspStart lua_ls')
-      vim.notify('Vim modules are avaible')
-    end, { desc = "Load vim modules for work with them" })
+    -- vim.keymap.set('n', '<leader>lv', function()
+    --   nvim_lsp.lua_ls.setup {
+    --     on_attach = function(client, bufnr)
+    --       lspf.on_attach(client, bufnr)
+    --       lspf.enable_format_on_save(client, bufnr)
+    --     end,
+    --     settings = {
+    --       Lua = {
+    --         diagnostics = {
+    --           globals = { "vim" },
+    --         },
+    --         workspace = {
+    --           library = lspf.loadfolder(true),
+    --           checkThirdParty = false,
+    --         },
+    --       },
+    --     },
+    --   }
+    --   vim.cmd('LspStop lua_ls')
+    --   vim.cmd('LspStart lua_ls')
+    --   vim.notify('Vim modules are avaible')
+    -- end, { desc = "Load vim modules for work with them" })
   end
 }
