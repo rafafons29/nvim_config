@@ -1,6 +1,5 @@
 local devicons = require('nvim-web-devicons')
 local incline = require('incline')
-local helpers = require('incline.helpers')
 
 local colors = require("colors.colors_" .. theme_name)
 
@@ -34,8 +33,8 @@ function M.setup()
   incline.setup {
     highlight = {
       groups = {
-        InclineNormal = { guibg = '#232326', guifg = colors.normal },
-        InclineNormalNC = { guibg = '#232326', guifg = colors.fg_b_y }
+        InclineNormal = { guibg = colors.base, guifg = colors.normal },
+        InclineNormalNC = { guibg = colors.base, guifg = colors.fg_b_y }
       }
     },
     window = {

@@ -1,5 +1,3 @@
-local colors = require("colors.colors_tokyonight")
-
 return {
   'akinsho/bufferline.nvim',
   opts = function()
@@ -15,7 +13,7 @@ return {
       },
       highlights = {
         buffer_selected = {
-          fg = colors.normal,
+          fg = require("colors.colors_" .. theme_name).normal,
           bold = true,
         },
       },
