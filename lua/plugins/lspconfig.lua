@@ -40,27 +40,37 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- vim.keymap.set('n', '<leader>lv', function()
-    --   nvim_lsp.lua_ls.setup {
-    --     on_attach = function(client, bufnr)
-    --       lspf.on_attach(client, bufnr)
-    --       lspf.enable_format_on_save(client, bufnr)
-    --     end,
-    --     settings = {
-    --       Lua = {
-    --         diagnostics = {
-    --           globals = { "vim" },
-    --         },
-    --         workspace = {
-    --           library = lspf.loadfolder(true),
-    --           checkThirdParty = false,
-    --         },
-    --       },
-    --     },
-    --   }
-    --   vim.cmd('LspStop lua_ls')
-    --   vim.cmd('LspStart lua_ls')
-    --   vim.notify('Vim modules are avaible')
-    -- end, { desc = "Load vim modules for work with them" })
-  end
+    vim.keymap.set('n',
+      '<leader>lv',
+      function()
+        require("lspconfig").lua_ls.setup {
+          on_attach = function(client, bufnr)
+            lspf.on_attach(client, bufnr)
+            lspf.enable_format_on_save(client, bufnr)
+          end,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                library = (function()
+                  local NVIMPATH = vim.fn.stdpath('config')
+
+                  return {
+                    vim.api.nvim_get_runtime_file(NVIMPATH, true),
+                    vim.fn.expand('$VIMRUNTIME')
+                  }
+                end)(),
+                checkThirdParty = false,
+              },
+            },
+          },
+        }
+        vim.cmd('LspRestart lua_ls')
+        -- vim.cmd('LspStop lua_ls')
+        -- vim.cmd('LspStart lua_ls')
+        vim.notify('Vim modules are avaible')
+      end, { desc = "Load vim modules" })
+  end,
 }

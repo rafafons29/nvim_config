@@ -10,15 +10,15 @@ function M.setup()
 
     -- A list of parser names, or "all"
     ensure_installed = {
-      -- "lua",
-      -- "cpp",
-      -- "c",
-      -- "python",
-      -- "go",
-      -- "html",
-      -- "css",
-      -- "vimdoc",
-      -- "markdown",
+      "lua",
+      "cpp",
+      "c",
+      "python",
+      "go",
+      "html",
+      "css",
+      "vimdoc",
+      "markdown",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
