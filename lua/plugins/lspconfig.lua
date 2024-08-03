@@ -1,6 +1,6 @@
 local servers = require("servers.servers")
 local lspf = require("servers.lsp_functions")
--- local nvim_lsp = require("lspconfig")
+local lsp_lua = require("servers.lsp_lua")(true)
 
 return {
   'neovim/nvim-lspconfig',
@@ -48,28 +48,9 @@ return {
             lspf.on_attach(client, bufnr)
             lspf.enable_format_on_save(client, bufnr)
           end,
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { "vim" },
-              },
-              workspace = {
-                library = (function()
-                  local NVIMPATH = vim.fn.stdpath('config')
-
-                  return {
-                    vim.api.nvim_get_runtime_file(NVIMPATH, true),
-                    vim.fn.expand('$VIMRUNTIME')
-                  }
-                end)(),
-                checkThirdParty = false,
-              },
-            },
-          },
+          settings = lsp_lua.settings
         }
         vim.cmd('LspRestart lua_ls')
-        -- vim.cmd('LspStop lua_ls')
-        -- vim.cmd('LspStart lua_ls')
         vim.notify('Vim modules are avaible')
       end, { desc = "Load vim modules" })
   end,

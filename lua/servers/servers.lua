@@ -25,7 +25,7 @@ local lspf = require("servers.lsp_functions")
 return {
   -- Lua
   lua = function()
-    local lsp_lua = require("servers.lsp_lua")
+    local lsp_lua = require("servers.lsp_lua")()
     setup_server('lua_ls', {
       on_attach = function(client, bufnr)
         lspf.on_attach(client, bufnr)
