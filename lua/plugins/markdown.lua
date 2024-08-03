@@ -242,20 +242,21 @@ return {
       --   'rendered': Replaces the 'raw' value when rendering
       --   'highlight': Highlight for the 'rendered' text and quote markers
       callout = {
-        note = { raw = '[!NOTE]', rendered = rendered_callout.note, highlight = 'RenderMarkdownInfo' },
-        tip = { raw = '[!TIP]', rendered = rendered_callout.tip, highlight = 'RenderMarkdownSuccess' },
-        important = { raw = '[!IMPORTANT]', rendered = rendered_callout.important, highlight = 'RenderMarkdownHint' },
-        warning = { raw = '[!WARNING]', rendered = rendered_callout.warning, highlight = 'RenderMarkdownWarn' },
-        caution = { raw = '[!CAUTION]', rendered = rendered_callout.caution, highlight = 'RenderMarkdownError' },
-        abstract = { raw = '[!ABSTRACT]', rendered = rendered_callout.abstract, highlight = 'RenderMarkdownInfo' },
-        todo = { raw = '[!TODO]', rendered = rendered_callout.todo, highlight = 'RenderMarkdownInfo' },
-        success = { raw = '[!SUCCESS]', rendered = rendered_callout.success, highlight = 'RenderMarkdownSuccess' },
-        question = { raw = '[!QUESTION]', rendered = rendered_callout.question, highlight = 'RenderMarkdownWarn' },
-        failure = { raw = '[!FAILURE]', rendered = rendered_callout.failure, highlight = 'RenderMarkdownError' },
-        danger = { raw = '[!DANGER]', rendered = rendered_callout.danger, highlight = 'RenderMarkdownError' },
-        bug = { raw = '[!BUG]', rendered = rendered_callout.bug, highlight = 'RenderMarkdownError' },
-        example = { raw = '[!EXAMPLE]', rendered = rendered_callout.example, highlight = 'RenderMarkdownHint' },
-        quote = { raw = '[!QUOTE]', rendered = rendered_callout.quote, highlight = 'RenderMarkdownQuote' },
+        note = { raw = '[!NOTE]', rendered = '󰋽 Note', highlight = 'RenderMarkdownInfo' },
+        tip = { raw = '[!TIP]', rendered = '󰌶 Tip', highlight = 'RenderMarkdownSuccess' },
+        important = { raw = '[!IMPORTANT]', rendered = '󰅾 Important', highlight = 'RenderMarkdownHint' },
+        warning = { raw = '[!WARNING]', rendered = '󰀪 Warning', highlight = 'RenderMarkdownWarn' },
+        caution = { raw = '[!CAUTION]', rendered = '󰳦 Caution', highlight = 'RenderMarkdownError' },
+        -- Obsidian: https://help.a.md/Editing+and+formatting/Callouts
+        abstract = { raw = '[!ABSTRACT]', rendered = '󰨸 Abstract', highlight = 'RenderMarkdownInfo' },
+        todo = { raw = '[!TODO]', rendered = '󰗡 Todo', highlight = 'RenderMarkdownInfo' },
+        success = { raw = '[!SUCCESS]', rendered = '󰄬 Success', highlight = 'RenderMarkdownSuccess' },
+        question = { raw = '[!QUESTION]', rendered = '󰘥 Question', highlight = 'RenderMarkdownWarn' },
+        failure = { raw = '[!FAILURE]', rendered = '󰅖 Failure', highlight = 'RenderMarkdownError' },
+        danger = { raw = '[!DANGER]', rendered = '󱐌 Danger', highlight = 'RenderMarkdownError' },
+        bug = { raw = '[!BUG]', rendered = '󰨰 Bug', highlight = 'RenderMarkdownError' },
+        example = { raw = '[!EXAMPLE]', rendered = '󰉹 Example', highlight = 'RenderMarkdownHint' },
+        quote = { raw = '[!QUOTE]', rendered = '󱆨 Quote', highlight = 'RenderMarkdownQuote' },
       },
       link = {
         -- Turn on / off inline link icon rendering
