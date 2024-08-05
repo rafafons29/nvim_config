@@ -65,7 +65,7 @@ return {
   clangd = function()
     local lsp_c = require("servers.lsp_clangd")
     setup_server('clangd', {
-      on_attach = lspf.on_attach,
+      on_attach = lsp_c.on_attach,
       capabilities = lspf.capabilities,
       cmd = lsp_c.cmd,
     })
