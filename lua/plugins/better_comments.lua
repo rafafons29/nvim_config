@@ -11,7 +11,7 @@ return {
           fg = "#FF2D00",
           bg = "",
           bold = false,
-          virtual_text = "❌",
+          virtual_text = " ",
         },
         {
           name = "`",
@@ -19,6 +19,13 @@ return {
           bg = "",
           bold = false,
           virtual_text = " ",
+        },
+        {
+          name = ",",
+          fg = "#2387AA",
+          bg = "",
+          bold = false,
+          virtual_text = "",
         },
         {
           name = ":",

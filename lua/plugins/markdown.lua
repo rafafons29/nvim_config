@@ -1,104 +1,107 @@
-local rendered_callout = {
-  note = "󰋽 Note",
-  tip = "󰌶 Tip",
-  important = "󰅾 Important",
-  warning = "󰀪 Warning",
-  caution = "󰳦 Caution",
-  abstract = "󰨸 Abstract",
-  todo = "󰗡 Todo",
-  success = "󰄬 Success",
-  question = "󰘥 Question",
-  failure = "󰅖 Failure",
-  danger = "󱐌 Danger",
-  bug = "󰨰 Bug",
-  example = "󰉹 Example",
-  quote = "󱆨 Quote",
-}
-
-vim.api.nvim_create_user_command('ShowCalloutOptions', function()
-  for _, value in pairs(rendered_callout) do
-    print(value)
-  end
-end, { desc = "Mostrar los callout disponibles en render_markdown" })
-
 return {
   {
     'MeanderingProgrammer/markdown.nvim',
+    ft = "markdown",
+    cmd = { 'RenderMarkdown' },
     VeryLazy = true,
+    lazy = true,
     opts = {
+      -- Whether Markdown should be rendered by default or not
       enabled = true,
-      max_file_size = 1.5,
+      -- Maximum file size (in MB) that this plugin will attempt to render
+      -- Any file larger than this will effectively be ignored
+      max_file_size = 10.0,
+      -- Milliseconds that must pass before updating marks, updates occur
+      -- within the context of the visible window, not the entire buffer
+      debounce = 100,
+      -- Pre configured settings that will attempt to mimic various target
+      -- user experiences. Any user provided settings will take precedence.
+      --  obsidian: mimic Obsidian UI
+      --  lazy: will attempt to stay up to date with LazyVim configuration
+      --  none: does nothing
+      preset = 'none',
+      -- Capture groups that get pulled from markdown
       markdown_query = [[
-        (atx_heading [
-            (atx_h1_marker)
-            (atx_h2_marker)
-            (atx_h3_marker)
-            (atx_h4_marker)
-            (atx_h5_marker)
-            (atx_h6_marker)
-        ] @heading)
+            (atx_heading [
+                (atx_h1_marker)
+                (atx_h2_marker)
+                (atx_h3_marker)
+                (atx_h4_marker)
+                (atx_h5_marker)
+                (atx_h6_marker)
+            ] @heading)
 
-        (thematic_break) @dash
+            (thematic_break) @dash
 
-        (fenced_code_block) @code
+            (fenced_code_block) @code
 
-        [
-            (list_marker_plus)
-            (list_marker_minus)
-            (list_marker_star)
-        ] @list_marker
+            [
+                (list_marker_plus)
+                (list_marker_minus)
+                (list_marker_star)
+            ] @list_marker
 
-        (task_list_marker_unchecked) @checkbox_unchecked
-        (task_list_marker_checked) @checkbox_checked
+            (task_list_marker_unchecked) @checkbox_unchecked
+            (task_list_marker_checked) @checkbox_checked
 
-        (block_quote) @quote
+            (block_quote) @quote
 
-        (pipe_table) @table
-    ]],
+            (pipe_table) @table
+        ]],
       -- Capture groups that get pulled from quote nodes
       markdown_quote_query = [[
-        [
-            (block_quote_marker)
-            (block_continuation)
-        ] @quote_marker
-    ]],
+            [
+                (block_quote_marker)
+                (block_continuation)
+            ] @quote_marker
+        ]],
       -- Capture groups that get pulled from inline markdown
       inline_query = [[
-        (code_span) @code
+            (code_span) @code
 
-        (shortcut_link) @callout
+            (shortcut_link) @shortcut
 
-        [(inline_link) (full_reference_link) (image)] @link
-    ]],
-      inline_link_query = '[(inline_link) (full_reference_link) (image)] @link',
+            [(inline_link) (full_reference_link) (image)] @link
+        ]],
+      -- The level of logs to write to file: vim.fn.stdpath('state') .. '/render-markdown.log'
+      -- Only intended to be used for plugin development / debugging
       log_level = 'error',
-      file_types = { 'markdown', 'vimwiki' },
+      -- Filetypes this plugin will run on
+      file_types = { 'markdown' },
+      -- Vim modes that will show a rendered view of the markdown file
+      -- All other modes will be uneffected by this plugin
       render_modes = { 'n', 'c' },
-      exclude = {
-        buftypes = {},
-      },
+      -- Set to avoid seeing warnings for conflicts in health check
+      acknowledge_conflicts = false,
       anti_conceal = {
         -- This enables hiding any added text on the line the cursor is on
         -- This does have a performance penalty as we must listen to the 'CursorMoved' event
-        enabled = false,
+        enabled = true,
       },
       latex = {
         -- Whether LaTeX should be rendered, mainly used for health check
-        enabled = false,
+        enabled = true,
         -- Executable used to convert latex formula to rendered unicode
         converter = 'latex2text',
         -- Highlight for LaTeX blocks
         highlight = 'RenderMarkdownMath',
+        -- Amount of empty lines above LaTeX blocks
+        top_pad = 0,
+        -- Amount of empty lines below LaTeX blocks
+        bottom_pad = 0,
       },
       heading = {
         -- Turn on / off heading icon & background rendering
         enabled = true,
         -- Turn on / off any sign column related rendering
         sign = true,
+        -- Determines how the icon fills the available space:
+        --  inline: underlying '#'s are concealed resulting in a left aligned icon
+        --  overlay: result is left padded with spaces to hide any additional '#'
+        position = 'overlay',
         -- Replaces '#+' of 'atx_h._marker'
         -- The number of '#' in the heading determines the 'level'
         -- The 'level' is used to index into the array using a cycle
-        -- The result is left padded with spaces to hide any additional '#'
         icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
         -- Added to the sign column if enabled
         -- The 'level' is used to index into the array using a cycle
@@ -107,14 +110,18 @@ return {
         --  block: width of the heading text
         --  full: full width of the window
         width = 'block',
+        -- The 'level' is used to index into the array using a clamp
+        -- Highlight for the heading icon and extends through the entire line
         backgrounds = {
-          'RenderMarkdownH1bg',
-          'RenderMarkdownH2bg',
-          'RenderMarkdownH3bg',
-          'RenderMarkdownH4bg',
-          'RenderMarkdownH5bg',
-          'RenderMarkdownH6bg',
+          'RenderMarkdownH1Bg',
+          'RenderMarkdownH2Bg',
+          'RenderMarkdownH3Bg',
+          'RenderMarkdownH4Bg',
+          'RenderMarkdownH5Bg',
+          'RenderMarkdownH6Bg',
         },
+        -- The 'level' is used to index into the array using a clamp
+        -- Highlight for the heading and sign icons
         foregrounds = {
           'RenderMarkdownH1',
           'RenderMarkdownH2',
@@ -128,15 +135,30 @@ return {
         -- Turn on / off code block & inline code rendering
         enabled = true,
         -- Turn on / off any sign column related rendering
-        sign = false,
+        sign = true,
         -- Determines how code blocks & inline code are rendered:
         --  none: disables all rendering
         --  normal: adds highlight group to code blocks & inline code, adds padding to code blocks
         --  language: adds language icon to sign column if enabled and icon + name above code blocks
         --  full: normal + language
-        style = 'language',
+        style = 'full',
+        -- Determines where language icon is rendered:
+        --  right: Right side of code block
+        --  left: Left side of code block
+        position = 'left',
+        -- An array of language names for which background highlighting will be disabled
+        -- Likely because that language has background highlights itself
+        disable_background = { 'diff' },
         -- Amount of padding to add to the left of code blocks
         left_pad = 0,
+        -- Amount of padding to add to the right of code blocks when width is 'block'
+        right_pad = 0,
+        -- Minimum width to use for code blocks when width is 'block'
+        min_width = 0,
+        -- Width of the code block background:
+        --  block: width of the code block
+        --  full: full width of the window
+        width = 'full',
         -- Determins how the top / bottom of code block are rendered:
         --  thick: use the same highlight as the code body
         --  thin: when lines are empty overlay the above & below icons
@@ -145,8 +167,10 @@ return {
         above = '▄',
         -- Used below code blocks for thin border
         below = '▀',
-        -- Highlight for code blocks & inline code
+        -- Highlight for code blocks
         highlight = 'RenderMarkdownCode',
+        -- Highlight for inline code
+        highlight_inline = 'RenderMarkdownCodeInline',
       },
       dash = {
         -- Turn on / off thematic break rendering
@@ -154,6 +178,10 @@ return {
         -- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'
         -- The icon gets repeated across the window's width
         icon = '─',
+        -- Width of the generated line:
+        --  <integer>: a hard coded width value
+        --  full: full width of the window
+        width = 'full',
         -- Highlight for the whole line generated from the icon
         highlight = 'RenderMarkdownDash',
       },
@@ -165,6 +193,10 @@ return {
         -- The 'level' is used to index into the array using a cycle
         -- If the item is a 'checkbox' a conceal is used to hide the bullet instead
         icons = { '●', '○', '◆', '◇' },
+        -- Padding to add to the left of bullet point
+        left_pad = 0,
+        -- Padding to add to the right of bullet point
+        right_pad = 0,
         -- Highlight for the bullet icon
         highlight = 'RenderMarkdownBullet',
       },
@@ -201,6 +233,12 @@ return {
         enabled = true,
         -- Replaces '>' of 'block_quote'
         icon = '▋',
+        -- Whether to repeat icon on wrapped lines. Requires neovim >= 0.10. This will obscure text if
+        -- not configured correctly with :h 'showbreak', :h 'breakindent' and :h 'breakindentopt'. A
+        -- combination of these that is likely to work is showbreak = '  ' (2 spaces), breakindent = true,
+        -- breakindentopt = '' (empty string). These values are not validated by this plugin. If you want
+        -- to avoid adding these to your main configuration then set them in win_options for this plugin.
+        repeat_linebreak = false,
         -- Highlight for the quote icon
         highlight = 'RenderMarkdownQuote',
       },
@@ -263,18 +301,24 @@ return {
         enabled = true,
         -- Inlined with 'image' elements
         image = '󰥶 ',
-        -- Inlined with 'inline_link' elements
+        -- Fallback icon for 'inline_link' elements
         hyperlink = '󰌹 ',
-        -- Applies to the inlined icon
+        -- Applies to the fallback inlined icon
         highlight = 'RenderMarkdownLink',
+        -- Define custom destination patterns so icons can quickly inform you of what a link
+        -- contains. Applies to 'inline_link' and wikilink nodes.
+        -- Can specify as many additional values as you like following the 'web' pattern below
+        --   The key in this case 'web' is for healthcheck and to allow users to change its values
+        --   'pattern': Matched against the destination text see :h lua-pattern
+        --   'icon': Gets inlined before the link text
+        --   'highlight': Highlight for the 'icon'
+        custom = {
+          web = { pattern = '^http[s]?://', icon = '󰖟 ', highlight = 'RenderMarkdownLink' },
+        },
       },
       sign = {
         -- Turn on / off sign rendering
         enabled = true,
-        -- More granular mechanism, disable signs within specific buftypes
-        exclude = {
-          buftypes = { 'nofile' },
-        },
         -- Applies to background of sign text
         highlight = 'RenderMarkdownSign',
       },
@@ -293,6 +337,19 @@ return {
           default = vim.api.nvim_get_option_value('concealcursor', {}),
           -- Used when being rendered, disable concealing text in all modes
           rendered = '',
+        },
+      },
+      -- More granular configuration mechanism, allows different aspects of buffers
+      -- to have their own behavior. Values default to the top level configuration
+      -- if no override is provided. Supports the following fields:
+      --   enabled, max_file_size, debounce, render_modes, anti_conceal, heading, code,
+      --   dash, bullet, checkbox, quote, pipe_table, callout, link, sign, win_options
+      overrides = {
+        -- Overrides for different buftypes, see :h 'buftype'
+        buftype = {
+          nofile = {
+            sign = { enabled = false },
+          },
         },
       },
       -- Mapping from treesitter language to user defined handlers

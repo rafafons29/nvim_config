@@ -11,7 +11,7 @@ local function set_colorscheme(theme_name)
   return lethm
 end
 
-_G.theme_name = 'tokyonight'
+_G.theme_name = 'oxocarbon'
 local theme = set_colorscheme(theme_name)
 
 return {

@@ -20,8 +20,8 @@ return {
     }
   end,
   keys = {
-    { 'te',      cmd 'tabedit',             mode = 'n', desc = "Create new tab" },
-    { '<Tab>',   cmd 'BufferLineCycleNext', mode = 'n', desc = "Go to next buffer" },
-    { '<S-Tab>', cmd 'BufferLineCyclePrev', mode = 'n', desc = "Go to preview buffer" },
+    { 'te',      cmd 'tabedit',             desc = "Create new tab" },
+    { '<Tab>',   cmd 'BufferLineCycleNext', desc = "Go to next buffer" },
+    { '<S-Tab>', cmd 'BufferLineCyclePrev', desc = "Go to preview buffer" },
   }
 }
