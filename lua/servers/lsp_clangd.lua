@@ -1,7 +1,15 @@
 return {
   cmd = {
     "clangd",
-    "--offset-encoding=utf-16",
+    "--compile-commands-dir=build",
+    "-fmodules-ts"
+  },
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+  settings = {
+    clangd = {
+      clangdFilesStatus = true,
+      clangdFlags = { "--background-index", "--clang-tidy" }
+    }
   },
   on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end

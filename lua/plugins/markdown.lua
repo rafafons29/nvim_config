@@ -141,7 +141,7 @@ return {
         --  normal: adds highlight group to code blocks & inline code, adds padding to code blocks
         --  language: adds language icon to sign column if enabled and icon + name above code blocks
         --  full: normal + language
-        style = 'full',
+        style = 'language',
         -- Determines where language icon is rendered:
         --  right: Right side of code block
         --  left: Left side of code block
@@ -158,11 +158,11 @@ return {
         -- Width of the code block background:
         --  block: width of the code block
         --  full: full width of the window
-        width = 'full',
+        width = 'block',
         -- Determins how the top / bottom of code block are rendered:
         --  thick: use the same highlight as the code body
         --  thin: when lines are empty overlay the above & below icons
-        border = 'thin',
+        border = 'thick',
         -- Used above code blocks for thin border
         above = '▄',
         -- Used below code blocks for thin border

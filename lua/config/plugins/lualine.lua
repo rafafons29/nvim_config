@@ -17,6 +17,10 @@ local function minimal_theme(colors)
       a = { fg = colors.fg_a_z, bg = colors.visual },
       z = { fg = colors.fg_b_y }
     },
+    command = {
+      a = { fg = colors.fg_a_z, bg = colors.visual },
+      z = { fg = colors.fg_b_y }
+    },
     replace = {
       a = { fg = colors.fg_a_z },
       z = { fg = colors.fg_b_y }

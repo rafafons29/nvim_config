@@ -10,8 +10,22 @@ function M.setup()
   telescope.setup {
     defaults = {
       file_ignore_patterns = { "node_modules", "dist", ".git", ".next" },
-      path_display = { "filename_first" },
-      sorting_strategy = "ascending",
+      path_display = function(opts, path)
+        local tail = require("telescope.utils").path_tail(path)
+        path = string.format("%s (%s)", tail, path)
+
+        local highlights = {
+          {
+            {
+              0,       -- highlight start position
+              #path,   -- highlight end position
+            },
+            "Comment", -- highlight group name
+          },
+        }
+
+        return path, highlights
+      end,
       layout_config = {
         horizontal = {
           width = 0.85,
@@ -37,6 +51,7 @@ function M.setup()
         previewer = false,
         initial_mode = "normal",
         layout_config = { height = 20, width = 110 },
+        path_display = { "filename_first" },
         -- disables netrw and use telescope-file-browser in its place
         hijack_netrw = true,
         mappings = {
