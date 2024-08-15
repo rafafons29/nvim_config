@@ -11,7 +11,7 @@ local function set_colorscheme(theme_name)
   return lethm
 end
 
-_G.theme_name = 'tokyonight'
+_G.theme_name = 'onedark'
 local theme = set_colorscheme(theme_name)
 
 return {
@@ -44,4 +44,15 @@ return {
     main = 'config.plugins.oxocarbon',
     config = true
   },
+  {
+    'sainnhe/sonokai',
+    lazy = true,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.sonokai_enable_italic = true
+      -- vim.cmd.colorscheme('sonokai')
+    end
+  }
 }

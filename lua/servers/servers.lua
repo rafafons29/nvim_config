@@ -69,7 +69,6 @@ return {
       capabilities = lspf.capabilities,
       cmd = lsp_c.cmd,
       filetypes = lsp_c.filetypes,
-      settings = lsp_c.settings,
     })
     active_lsp('clangd')
   end,

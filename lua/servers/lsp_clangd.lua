@@ -1,16 +1,14 @@
 return {
   cmd = {
     "clangd",
-    "--compile-commands-dir=build",
-    "-fmodules-ts"
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm",
   },
   filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
-  settings = {
-    clangd = {
-      clangdFilesStatus = true,
-      clangdFlags = { "--background-index", "--clang-tidy" }
-    }
-  },
   on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { noremap = true, silent = true }

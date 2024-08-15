@@ -13,6 +13,9 @@ vim.o.incsearch = true    -- Habilita la búsqueda incremental
 vim.o.mouse = 'a'         -- Utilizar el ratón para algunas operaciones
 vim.o.syntax = 'on'       -- Habilita el resaltado de sintaxis
 vim.o.background = 'dark' -- Sirve para leer o modificar opciones generales del editor
+vim.o.spell = false
+vim.o.spelllang = 'es'
+-- vim.o.spellfile = "~/.config/nvim/es.utf-8.spl"  -- Activar esta linea cuando no este instalado el archivo para es
 
 -- Habilita la búsqueda sensible a mayúsculas y minúsculas
 vim.o.ignorecase = true

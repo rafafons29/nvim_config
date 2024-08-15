@@ -27,9 +27,10 @@ function M.setup()
         return path, highlights
       end,
       layout_config = {
+        prompt_position = "top",
         horizontal = {
           width = 0.85,
-          preview_width = 0.6,
+          preview_width = 0.55,
         },
       },
       mappings = {
