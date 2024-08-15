@@ -65,10 +65,4 @@ keymap.set('n', '<leader>dq', function() require("dap").close() end, { noremap =
 keymap.set('n', '<leader>db', function() require("dap").toggle_breakpoint() end, { noremap = true, silent = true })
 
 
-keymap.set('n', '<leader>spl', function()
-  if vim.o.spell == true then
-    vim.o.spell = false
-  else
-    vim.o.spell = true
-  end
-end, { desc = "Active spell check" })
+keymap.set('n', '<leader>spl', function() vim.o.spell = not vim.o.spell end, { desc = "Active spell check" })
