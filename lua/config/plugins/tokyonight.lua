@@ -55,17 +55,19 @@ function M.setup()
         fg = prompt,
       }
       hl.TelescopePromptTitle = {
-        bg = prompt,
-        fg = prompt,
+        bg = c.red,
+        fg = c.bg_dark,
       }
       hl.TelescopePreviewTitle = {
-        bg = c.bg_dark,
+        bg = c.green,
         fg = c.bg_dark,
       }
       hl.TelescopeResultsTitle = {
         bg = c.bg_dark,
         fg = c.bg_dark,
       }
+
+      return hl
     end,
 
     cache = true, -- When set to true, the theme will be cached for better performance

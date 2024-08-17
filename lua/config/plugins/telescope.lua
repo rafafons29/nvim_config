@@ -1,5 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local action_generate = require("telescope.actions.generate")
 local builtin = require("telescope.builtin")
 
 local fb_actions = telescope.extensions.file_browser.actions
@@ -9,6 +10,7 @@ function M.setup()
   telescope.load_extension("noice")
   telescope.setup {
     defaults = {
+      sorting_strategy = "ascending",
       file_ignore_patterns = { "node_modules", "dist", ".git", ".next" },
       path_display = function(opts, path)
         local tail = require("telescope.utils").path_tail(path)
@@ -29,13 +31,20 @@ function M.setup()
       layout_config = {
         prompt_position = "top",
         horizontal = {
-          width = 0.85,
+          width = 0.87,
+          height = 0.80,
           preview_width = 0.55,
         },
       },
       mappings = {
         n = {
-          ["q"] = actions.close
+          ["q"] = actions.close,
+          ["?"] = action_generate.which_key {
+            name_width = 20,           -- typically leads to smaller floats
+            max_height = 0.5,          -- increase potential maximum height
+            separator = " > ",         -- change sep between mode, keybind, and name
+            close_with_action = false, -- do not close float on action
+          }
         },
       },
     },

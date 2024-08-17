@@ -6,6 +6,9 @@ local colors = require("colors.colors_" .. theme_name)
 local M = {}
 
 local function toggle_incline()
+  -- ! Mal
+  -- ! Tenemos que usar la opcion de saber si bufferline esta visible o none
+  -- ! En caso de que este visible no mostrar incline en caso contrario mostrarlo
   local open_buffers = (function() return #vim.api.nvim_list_tabpages() end)()
 
   if open_buffers > 1 then
@@ -24,9 +27,7 @@ vim.api.nvim_create_autocmd("TabEnter", {
 
 vim.api.nvim_create_autocmd("TabClosed", {
   pattern = '*',
-  callback = function()
-    vim.schedule(toggle_incline)
-  end,
+  callback = toggle_incline
 })
 
 function M.setup()
