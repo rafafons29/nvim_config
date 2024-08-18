@@ -85,6 +85,17 @@ return {
     active_lsp('cmake')
   end,
 
+  qmlls = function()
+    local lsp_qmlls = require("servers.lsp_qmlls")
+    setup_server('qmlls', {
+      -- on_attach = lspf.on_attach,
+      -- capabilities = lspf.capabilities,
+      cmd = lsp_qmlls.cmd,
+      filetypes = lsp_qmlls.filetypes,
+      single_file_support = lsp_qmlls.single_file_support,
+    })
+  end,
+
   -- Typescript and javascript
   tss = function()
     local lsp_tss = require("servers.lsp_tsserver")

@@ -71,3 +71,16 @@ vim.cmd [[
   autocmd BufWritePost * setlocal foldmethod=manual
   augroup END
 ]]
+
+-- Definicion de funciones para establecer los kyemap y la definicion del mapleader
+vim.g.mapleader = ' '
+
+function _G.cmd(command)
+  return table.concat({ '<Cmd>', command, '<CR>' })
+end
+
+function _G.keymap_set(commands_table)
+  for _, command in pairs(commands_table) do
+    vim.keymap.set(command[1], command[2], command[3], command[4])
+  end
+end

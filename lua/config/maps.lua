@@ -1,63 +1,41 @@
--- Definiendo mapleader
-vim.g.mapleader = ' '
-
-_G.keymap = vim.keymap
-
-function _G.cmd(command)
-  return table.concat({ '<Cmd>', command, '<CR>' })
-end
-
-keymap.set('i', 'jj', '<ESC>', { desc = "Go to normal mode" })
-keymap.set('i', 'JJ', '<ESC>', { desc = "Go to normal mode" })
-keymap.set('n', '<leader>w', cmd 'write', { desc = 'Save' })
-keymap.set('n', '<leader>q', cmd 'quit', { desc = 'Leave' })
-keymap.set('n', '<leader><S-q>', cmd 'bufdo bd|qa', { noremap = true, desc = "Close all buffers" })
-keymap.set({ 'n', 'x' }, 'cp', '"+y', { desc = "Copy select text" })
-keymap.set({ 'n', 'x' }, 'cv', '"+p', { desc = "Past the copy text" })
-keymap.set({ 'n', 'x' }, 'x', '"_x', { desc = "Cut select text" })
-keymap.set('n', '<leader>a', cmd 'keepjumps normal! ggVG', { desc = "Select all" })
-keymap.set('n', '<leader>j', '*``cgn', { desc = "Delete word, and search it" })
-keymap.set('n', '+', '<C-a>')
-keymap.set('n', '-', '<C-x>')
-keymap.set('n', 'dw', 'vb"_d')
-keymap.set('n', 'ss', cmd 'split<Return><C-w>w', { desc = "Split horizontal window" })
-keymap.set('n', 'sv', cmd 'vsplit<Return><C-w>w', { desc = "Split vertical window" })
-keymap.set('n', '<leader>nh', cmd 'nohlsearch', { noremap = true, silent = true, desc = 'Clear search highlight' })
-
--- Move window
-keymap.set('n', '<leader>', '<C-w>w')
-keymap.set('', 'sh', '<C-w>h', { desc = "Move cursor to left window" })
-keymap.set('', 'sk', '<C-w>k', { desc = "Move cursor to up window" })
-keymap.set('', 'sj', '<C-w>j', { desc = "Move cursor to down window" })
-keymap.set('', 'sl', '<C-w>l', { desc = "Move cursor to right window" })
-
--- Resize window
-keymap.set('n', '<C-w><left>', '<C-w><', { desc = "Resize window left" })
-keymap.set('n', '<C-w><right>', '<C-w>>', { desc = "Resize window right" })
-keymap.set('n', '<C-w><up>', '<C-w>+', { desc = "Resize window up" })
-keymap.set('n', '<C-w><down>', '<C-w>-', { desc = "Resize window down" })
-
-keymap.set('v', '>', '>gv', { desc = 'after tab in re-select the same' })
-keymap.set('v', '<', '<gv', { desc = 'after tab out re-select the same' })
-
-keymap.set('n', 'n', 'nzzzv', { desc = 'Goes to the next result on the search and put the cursor in the middle' })
-keymap.set('n', 'N', 'Nzzzv', { desc = 'Goes to the prev result on the search and put the cursor in the middle' })
-
--- Jump between markdown headers
-keymap.set("n", "gj", [[/^##\+ .*<CR>]], { buffer = true, silent = true })
-keymap.set("n", "gk", [[?^##\+ .*<CR>]], { buffer = true, silent = true })
-
--- Dismiss Noice Message
-keymap.set('n', '<leader>nd', cmd 'NoiceDismiss', { desc = 'Dismiss Noice Message' })
-
-keymap.set('n', '<C-w>z', cmd 'WindowsMaximize')
-keymap.set('n', '<C-w>>', cmd 'WindowsMaximizeVertically')
-keymap.set('n', '<C-w>^', cmd 'WindowsMaximizeHorizontally')
-keymap.set('n', '<C-w>=', cmd 'WindowsEqualize')
-
-keymap.set('n', '<leader>dr', function() require("dap").continue() end, { noremap = true, silent = true })
-keymap.set('n', '<leader>dq', function() require("dap").close() end, { noremap = true, silent = true })
-keymap.set('n', '<leader>db', function() require("dap").toggle_breakpoint() end, { noremap = true, silent = true })
-
-
-keymap.set('n', '<leader>spl', function() vim.o.spell = not vim.o.spell end, { desc = "Active spell check" })
+keymap_set({
+  { 'i',          'jj',            '<esc>',                                           { desc = "go to normal mode" } },
+  { 'i',          'JJ',            '<ESC>',                                           { desc = "Go to normal mode" } },
+  { 'n',          '<leader>w',     cmd 'write',                                       { desc = 'Save' } },
+  { 'n',          '<leader>q',     cmd 'quit',                                        { desc = 'Leave' } },
+  { 'n',          '<leader><S-q>', cmd 'bufdo bd|qa',                                 { noremap = true, desc = "Close all buffers" } },
+  { { 'n', 'x' }, 'cp',            '"+y',                                             { desc = "Copy select text" } },
+  { { 'n', 'x' }, 'cv',            '"+p',                                             { desc = "Past the copy text" } },
+  { { 'n', 'x' }, 'x',             '"_x',                                             { desc = "Cut select text" } },
+  { 'n',          '<leader>a',     cmd 'keepjumps normal! ggVG',                      { desc = "Select all" } },
+  { 'n',          '<leader>j',     '*``cgn',                                          { desc = "Delete word, and search it" } },
+  { 'n',          '+',             '<C-a>',                                           { desc = "Sum" } },
+  { 'n',          '-',             '<C-x>',                                           { desc = "Sub" } },
+  { 'n',          'dw',            'vb"_d',                                           { desc = "Visual delete to blackhole" } },
+  { 'n',          'ss',            cmd 'split<Return><C-w>w',                         { desc = "Split horizontal window" } },
+  { 'n',          'sv',            cmd 'vsplit<Return><C-w>w',                        { desc = "Split vertical window" } },
+  { 'n',          '<leader>nh',    cmd 'nohlsearch',                                  { noremap = true, silent = true, desc = 'Clear search highlight' } },
+  { '',           'sh',            '<C-w>h',                                          { desc = "Move cursor to left window" } },
+  { '',           'sk',            '<C-w>k',                                          { desc = "Move cursor to up window" } },
+  { '',           'sj',            '<C-w>j',                                          { desc = "Move cursor to down window" } },
+  { '',           'sl',            '<C-w>l',                                          { desc = "Move cursor to right window" } },
+  { 'n',          '<C-w><left>',   '<C-w><',                                          { desc = "Resize window left" } },
+  { 'n',          '<C-w><right>',  '<C-w>>',                                          { desc = "Resize window right" } },
+  { 'n',          '<C-w><up>',     '<C-w>+',                                          { desc = "Resize window up" } },
+  { 'n',          '<C-w><down>',   '<C-w>-',                                          { desc = "Resize window down" } },
+  { 'v',          '>',             '>gv',                                             { desc = 'after tab in re-select the same' } },
+  { 'v',          '<',             '<gv',                                             { desc = 'after tab out re-select the same' } },
+  { 'n',          'n',             'nzzzv',                                           { desc = 'Goes to the next result on the search and put the cursor in the middle' } },
+  { 'n',          'N',             'Nzzzv',                                           { desc = 'Goes to the prev result on the search and put the cursor in the middle' } },
+  { "n",          "gj",            [[/^##\+ .*<CR>]],                                 { buffer = true, silent = true, desc = "Go to down markdown header" } },
+  { "n",          "gk",            [[?^##\+ .*<CR>]],                                 { buffer = true, silent = true } },
+  { 'n',          '<leader>nd',    cmd 'NoiceDismiss',                                { desc = 'Dismiss Noice Message' } },
+  { 'n',          '<C-w>z',        cmd 'WindowsMaximize',                             { desc = "Set maximun size to current window" } },
+  { 'n',          '<C-w>>',        cmd 'WindowsMaximizeVertically',                   { desc = "Set maximum vertical size to current window" } },
+  { 'n',          '<C-w>^',        cmd 'WindowsMaximizeHorizontally',                 { desc = "Set maximum horizontal size to current window" } },
+  { 'n',          '<C-w>=',        cmd 'WindowsEqualize',                             { desc = "Set equal size to all window" } },
+  { 'n',          '<leader>spl',   function() vim.o.spell = not vim.o.spell end,      { desc = "Active spell check" } },
+  { 'n',          '<leader>dr',    function() require("dap").continue() end,          { noremap = true, silent = true } },
+  { 'n',          '<leader>dq',    function() require("dap").close() end,             { noremap = true, silent = true } },
+  { 'n',          '<leader>db',    function() require("dap").toggle_breakpoint() end, { noremap = true, silent = true } }
+})

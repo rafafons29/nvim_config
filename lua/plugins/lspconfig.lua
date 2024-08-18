@@ -18,6 +18,7 @@ return {
     setup_autocmd('go', servers.go)
     setup_autocmd('python', servers.py)
     setup_autocmd({ 'c', 'cpp' }, servers.clangd)
+    setup_autocmd({ 'qml', 'qmljs' }, servers.qmlls)
     setup_autocmd('cmake', servers.cmake)
     setup_autocmd({ 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }, servers.tss)
     setup_autocmd({ 'html', 'markdown' }, servers.html)
@@ -40,9 +41,8 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    vim.keymap.set('n',
-      '<leader>lv',
-      function()
+    keymap_set({
+      { 'n', '<leader>lv', function()
         require("lspconfig").lua_ls.setup {
           on_attach = function(client, bufnr)
             lspf.on_attach(client, bufnr)
@@ -52,6 +52,7 @@ return {
         }
         vim.cmd('LspRestart lua_ls')
         vim.notify('Vim modules are avaible')
-      end, { desc = "Load vim modules" })
+      end, { desc = "Load vim modules" } }
+    })
   end,
 }

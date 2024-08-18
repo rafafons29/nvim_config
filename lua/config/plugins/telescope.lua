@@ -97,31 +97,32 @@ function M.setup()
     return vim.fn.expand('%:p:h')
   end
 
-  keymap.set('n', ';f',
-    function()
+  keymap_set({
+    { 'n', ';r',   function() builtin.live_grep() end,                 { desc = "Open Telescope to live grep" } },
+    { 'n', '\\\\', function() builtin.buffers() end,                   { desc = "Open Telescope to view open buffers" } },
+    { 'n', ';t',   function() builtin.help_tags() end,                 { desc = "Open Telescope to open help tags" } },
+    { 'n', ';;',   function() builtin.resume() end,                    { desc = "Open Telescope with resume" } },
+    { 'n', ';e',   function() builtin.diagnostics() end,               { desc = "Open Telescope to view the diagnostics" } },
+    { 'n', ';s',   function() builtin.current_buffer_fuzzy_find() end, { desc = "Open Telescope to see current buffers" } },
+    { 'n', ';f', function()
       builtin.find_files({
         no_ignore = true,
         hidden = true
       })
-    end)
-  keymap.set('n', ';r', function() builtin.live_grep() end)
-  keymap.set('n', '\\\\', function() builtin.buffers() end)
-  keymap.set('n', ';t', function() builtin.help_tags() end)
-  keymap.set('n', ';;', function() builtin.resume() end)
-  keymap.set('n', ';e', function() builtin.diagnostics() end)
-  keymap.set('n', ';s', function() builtin.current_buffer_fuzzy_find() end)
-  keymap.set("n", "sf", function()
-    telescope.extensions.file_browser.file_browser({
-      path = "%:p:h",
-      cwd = vim.telescope_buffer_dir(),
-      respect_gitignore = false,
-      hidden = true,
-      grouped = true,
-      previewer = false,
-      initial_mode = "normal",
-      layout_config = { height = 20, width = 110 },
-    })
-  end)
+    end, { desc = "Open telescope to find files" } },
+    { "n", "sf", function()
+      telescope.extensions.file_browser.file_browser({
+        path = "%:p:h",
+        cwd = vim.telescope_buffer_dir(),
+        respect_gitignore = false,
+        hidden = true,
+        grouped = true,
+        previewer = false,
+        initial_mode = "normal",
+        layout_config = { height = 20, width = 110 },
+      })
+    end, { desc = "Open Telescope file browser" } }
+  })
 end
 
 return M
