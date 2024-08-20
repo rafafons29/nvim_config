@@ -7,8 +7,8 @@ return {
     -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
     -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
     -- refer to `:h file-pattern` for more examples
-    "BufReadPre ~/Documentos/Obsidian Vault/*.md",
-    "BufNewFile ~/Documentos/Obsidian Vault/*.md",
+    "BufReadPre home/rafa/Documentos/Obsidian Vault/*.md",
+    "BufNewFile home/rafa/Documentos/Obsidian Vault/*.md",
   },
   dependencies = {
     -- Required.
@@ -27,7 +27,9 @@ return {
         path = "~/Documentos/Obsidian Vault/",
       },
     },
-
-    -- see below for full list of options 👇
   },
+  config = function()
+    vim.opt.conceallevel = 1
+    vim.opt.conceallevel = 2
+  end
 }

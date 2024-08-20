@@ -7,6 +7,7 @@ return {
   bg_b_y = '#11111b',
 
   base = '#11111c',
+  bg_dark = '#11111a',
   cyan = '#74c7ec',
   green = '#a6e3a1',
   red = '#f38ba8',
@@ -14,4 +15,5 @@ return {
   blue = '#89b4fa',
   yellow = '#f9e2af',
   orange = '#e8d19a',
+  gray = '#313244',
 }

@@ -24,18 +24,21 @@ function M.setup()
       variables = 'none'
     },
     highlights = (function(hl, c)
-      hl.CursorLineNr = { fg = c.green }
+      hl.CursorLineNr           = { fg = c.green }
 
-      hl.MiniIndentscopeSymbol = { fg = c.fg_b_y }
-      hl.TreesitterContext = { bg = '#232326' }
+      hl.MiniIndentscopeSymbol  = { fg = c.fg_b_y }
+      hl.LineNr                 = { fg = c.normal }
+      hl.LineNrAbove            = { fg = c.gray }
+      hl.LineNrBelow            = { fg = c.gray }
+      hl.TreesitterContext      = { bg = '#232326' }
 
-      hl.TelescopeNormal = { bg = c.bg_dark }
-      hl.TelescopePromptBorder = { bg = '#2b2c2e', fg = '#2b2c2e' }
-      hl.TelescopePromptNormal = { bg = '#2b2c2e' }
-      hl.TelescopePromptTitle = { bg = c.red, fg = c.base }
+      hl.TelescopeNormal        = { bg = c.bg_dark }
+      hl.TelescopePromptBorder  = { bg = '#2b2c2e', fg = '#2b2c2e' }
+      hl.TelescopePromptNormal  = { bg = '#2b2c2e' }
+      hl.TelescopePromptTitle   = { bg = c.red, fg = c.base }
       hl.TelescopePreviewBorder = { bg = c.bg_dark, fg = c.bg_dark }
-      hl.TelescopePreviewTitle = { bg = c.green, fg = c.base }
-      hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark }
+      hl.TelescopePreviewTitle  = { bg = c.green, fg = c.base }
+      hl.TelescopeBorder        = { bg = c.bg_dark, fg = c.bg_dark }
       hl.TelescopeResultsNormal = { bg = c.bg_dark, fg = c.fg_dark }
       hl.TelescopeResultsBorder = { bg = c.bg_dark, fg = c.bg_dark }
 

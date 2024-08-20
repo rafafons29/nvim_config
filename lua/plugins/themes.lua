@@ -5,6 +5,7 @@ local function set_colorscheme(theme_name)
     andromeda = true,
     oxocarbon = true,
     nightfox = true,
+    catppuccin = true,
   }
 
   lethm[theme_name] = false
@@ -12,7 +13,7 @@ local function set_colorscheme(theme_name)
   return lethm
 end
 
-_G.theme_name = 'tokyonight'
+_G.theme_name = 'catppuccin'
 local theme = set_colorscheme(theme_name)
 
 return {
@@ -44,6 +45,14 @@ return {
     lazy = theme.oxocarbon,
     main = 'config.plugins.oxocarbon',
     config = true
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    lazy = theme.catppuccin,
+    main = "config.plugins.catppuccin",
+    config = true,
   },
   {
     "EdenEast/nightfox.nvim",

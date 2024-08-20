@@ -15,5 +15,6 @@ return {
   yellow = '#e5c07b',
   orange = '#d19a66',
   bg_dark = '#1b1c1e',
-  fg_dark = '#a1a7b9'
+  fg_dark = '#a1a7b9',
+  gray = '#3b3f4c',
 }
