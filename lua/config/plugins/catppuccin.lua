@@ -45,6 +45,8 @@ function M.setup()
         LineNr                      = { fg = cat_color.normal },
         LineNrAbove                 = { fg = cat_color.gray },
         LineNrBelow                 = { fg = cat_color.gray },
+        Folded                      = { bg = cat_color.bg_dark, fg = cat_color.fg_a_z },
+        FoldColumn                  = { bg = cat_color.bg_dark, fg = cat_color.fg_a_z },
         TreesitterContext           = { fg = cat_color.base },
         TreesitterContextLineNumber = {
           fg = cat_color.gray,

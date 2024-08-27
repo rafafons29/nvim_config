@@ -15,6 +15,8 @@ function M.setup()
       "c",
       "python",
       "go",
+      "gomod",
+      "gosum",
       "html",
       "css",
       "vimdoc",

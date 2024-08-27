@@ -6,9 +6,6 @@ local colors = require("colors.colors_" .. theme_name)
 local M = {}
 
 local function toggle_incline()
-  -- ! Mal
-  -- ! Tenemos que usar la opcion de saber si bufferline esta visible o none
-  -- ! En caso de que este visible no mostrar incline en caso contrario mostrarlo
   local open_buffers = (function() return #vim.api.nvim_list_tabpages() end)()
 
   if open_buffers > 1 then
@@ -20,7 +17,9 @@ local function toggle_incline()
   return open_buffers
 end
 
-vim.api.nvim_create_autocmd("TabEnter", {
+-- Cuando abrimos un buffer por primera vez se activa el callback
+-- pero solo pasa la primera vez, luago no se hace la llamada al callback
+vim.api.nvim_create_autocmd("TabNewEntered", {
   pattern = '*',
   callback = toggle_incline,
 })
