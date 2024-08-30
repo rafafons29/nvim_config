@@ -1,6 +1,6 @@
 return {
   "p00f/clangd_extensions.nvim",
-  ft = { "cpp", "c" },
+  ft = { "cpp", "c", "cc", "h", "hpp" },
   lazy = true,
   opts = {
     inlay_hints = {
@@ -82,5 +82,19 @@ return {
     symbol_info = {
       border = "none",
     },
-  }
+  },
+  config = function(opts)
+    require("clangd_extensions").setup(opts)
+
+    --! Se esta ejecutando bien. Solo que no se muestra el texto virtual,
+    --! esto puede deberse a que intenta establecerlo antes de haber siquiera
+    --! cargado el lsp_server, entonces lo que debemos hacer es esperar que la
+    --! carga ocurra para que luego se ejecute la funcion.
+    vim.api.nvim_create_autocmd({ "BufNew", "BufEnter", "BufWinEnter" }, {
+      pattern = { "*.c", "*.cpp", "*.cc", "*.h", "*.hpp" },
+      callback = function()
+        require("clangd_extensions.inlay_hints").set_inlay_hints()
+      end
+    })
+  end
 }

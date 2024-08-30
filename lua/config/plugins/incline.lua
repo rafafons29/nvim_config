@@ -13,18 +13,16 @@ local function toggle_incline()
   else
     incline.enable()
   end
-
-  return open_buffers
 end
 
 -- Cuando abrimos un buffer por primera vez se activa el callback
 -- pero solo pasa la primera vez, luago no se hace la llamada al callback
-vim.api.nvim_create_autocmd("TabNewEntered", {
+vim.api.nvim_create_autocmd({ "TabEnter" }, {
   pattern = '*',
   callback = toggle_incline,
 })
 
-vim.api.nvim_create_autocmd("TabClosed", {
+vim.api.nvim_create_autocmd({ "TabClosed" }, {
   pattern = '*',
   callback = toggle_incline
 })
