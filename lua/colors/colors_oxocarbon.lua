@@ -14,4 +14,7 @@ return {
   blue = '#33b1ff',
   yellow = '#ffd666',
   orange = '#FF6F00',
+  bg_dark = '#131313',
+  fg_dark = '#b2b8ca',
+  gray = '#363636',
 }

@@ -23,6 +23,13 @@ end
 -- ----------------Conf to servers lsp---------------- --
 local lspf = require("servers.lsp_functions")
 return {
+  -- Bash
+  bash = function()
+    vim.lsp.start({
+      name = 'bash-language-server',
+      cmd = { 'bash-language-server', 'start' }
+    })
+  end,
   -- Lua
   lua = function()
     local lsp_lua = require("servers.lsp_lua")()

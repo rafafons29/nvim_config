@@ -13,7 +13,7 @@ return {
       },
       highlights = {
         buffer_selected = {
-          fg = require("colors.colors_" .. theme_name).normal,
+          fg = require("colors.colors")(theme_name).focus,
           bold = true,
         },
       },

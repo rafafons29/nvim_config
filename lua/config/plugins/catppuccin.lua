@@ -1,5 +1,5 @@
 local catppuccin = require("catppuccin")
-local cat_color = require("colors.colors_catppuccin")
+local cat_color = require("colors.colors")(catppuccin)
 local M = {}
 
 function M.setup()

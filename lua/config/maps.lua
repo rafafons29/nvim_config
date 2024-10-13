@@ -1,3 +1,4 @@
+vim.opt.keywordprg = "rae"
 keymap_set({
   { 'i',          'jj',                '<esc>',                                           { desc = "go to normal mode" } },
   { 'i',          'JJ',                '<ESC>',                                           { desc = "Go to normal mode" } },
@@ -35,8 +36,9 @@ keymap_set({
   { 'n',          '<C-w>>',            cmd 'WindowsMaximizeVertically',                   { desc = "Set maximum vertical size to current window" } },
   { 'n',          '<C-w>^',            cmd 'WindowsMaximizeHorizontally',                 { desc = "Set maximum horizontal size to current window" } },
   { 'n',          '<C-w>=',            cmd 'WindowsEqualize',                             { desc = "Set equal size to all window" } },
+  { 'n',          'gK',                cmd '!rae <cword>',                                { desc = "Search a word in RAE dictionaty" } },
   { 'n',          '<leader>spl',       function() vim.o.spell = not vim.o.spell end,      { desc = "Active spell check" } },
   { 'n',          '<leader>dr',        function() require("dap").continue() end,          { noremap = true, silent = true } },
   { 'n',          '<leader>dq',        function() require("dap").close() end,             { noremap = true, silent = true } },
-  { 'n',          '<leader>db',        function() require("dap").toggle_breakpoint() end, { noremap = true, silent = true } }
+  { 'n',          '<leader>db',        function() require("dap").toggle_breakpoint() end, { noremap = true, silent = true } },
 })

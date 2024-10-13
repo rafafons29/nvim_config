@@ -1,39 +1,39 @@
 local function minimal_theme(colors)
   return {
     normal = {
-      a = { fg = colors.fg_a_z, bg = colors.normal },
-      b = { fg = colors.fg_b_y },
-      c = { fg = colors.insert },
-      x = { fg = colors.insert },
-      y = { fg = colors.fg_b_y },
-      z = { fg = colors.fg_b_y },
+      a = { fg = colors.bg, bg = colors.focus },
+      b = { fg = colors.blue1 },
+      c = { fg = colors.green1 },
+      x = { fg = colors.green1 },
+      y = { fg = colors.blue1 },
+      z = { fg = colors.blue1 },
     },
 
     insert = {
-      a = { fg = colors.fg_a_z, bg = colors.insert },
-      z = { fg = colors.fg_b_y }
+      a = { fg = colors.bg, bg = colors.green1 },
+      z = { fg = colors.blue1 }
     },
     visual = {
-      a = { fg = colors.fg_a_z, bg = colors.visual },
-      z = { fg = colors.fg_b_y }
+      a = { fg = colors.bg, bg = colors.purple },
+      z = { fg = colors.blue1 }
     },
     command = {
-      a = { fg = colors.fg_a_z, bg = colors.visual },
-      z = { fg = colors.fg_b_y }
+      a = { fg = colors.bg, bg = colors.purple },
+      z = { fg = colors.blue1 }
     },
     replace = {
-      a = { fg = colors.fg_a_z },
-      z = { fg = colors.fg_b_y }
+      a = { fg = colors.bg },
+      z = { fg = colors.blue1 }
     },
 
     inactive = {
-      a = { fg = colors.fg_b_y },
-      b = { fg = colors.fg_b_y },
-      c = { fg = colors.fg_a_z },
+      a = { fg = colors.blue1 },
+      b = { fg = colors.blue1 },
+      c = { fg = colors.bg },
     },
   }
 end
-local colors = require("colors.colors_" .. theme_name)
+local colors = require("colors.colors")(theme_name)
 local linelua = require("lualine")
 local M = {}
 
@@ -87,18 +87,18 @@ function M.setup()
           source = { 'nvim' },
           sections = { 'error', 'warn' },
           diagnostics_color = {
-            error = { fg = colors.red },
+            error = { fg = colors.red1 },
             warn = { fg = colors.yellow }
           },
         },
       },
       lualine_y = {
-        { 'branch', icon = { '', align = 'right' }, color = { fg = colors.fg_b_y } },
+        { 'branch', icon = { '', align = 'right' }, color = { fg = colors.blue1 } },
         { 'progress', color = { fg = colors.orange } },
       },
       lualine_z = {
         { 'filetype',   icon_only = true },
-        { 'fileformat', color = { fg = colors.blue } }
+        { 'fileformat', color = { fg = colors.green1 } }
       },
     },
     inactive_sections = {

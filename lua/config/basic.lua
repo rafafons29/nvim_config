@@ -72,6 +72,15 @@ vim.cmd [[
   augroup END
 ]]
 
+-- spell
+vim.cmd [[
+  augroup markdownSpell
+      autocmd!
+      autocmd FileType markdown setlocal spell spelllang=es
+      autocmd BufRead,BufNewFile *.md setlocal spell spelllang=es
+  augroup END
+]]
+
 -- Definicion de funciones para establecer los kyemap y la definicion del mapleader
 vim.g.mapleader = ' '
 

@@ -1,0 +1,15 @@
+{
+  "bg": "#21252a",
+  "active": "#a1a7b9",
+  "inactive": "#3b3f4c",
+  "focus": "#61afef",
+  "blue1": "#408dcd",
+  "blue2": "#2c5372",
+  "green1": "#98c379",
+  "green2": "#2b6f77",
+  "red1": "#e86671",
+  "red2": "#993939",
+  "yellow": "#e5c07b",
+  "orange": "#d19a66",
+  "purple": "#c678dd"
+}
