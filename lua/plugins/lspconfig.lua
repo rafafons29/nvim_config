@@ -4,7 +4,7 @@ local lsp_lua = require("servers.lsp_lua")(true)
 
 return {
   'neovim/nvim-lspconfig',
-  dependencies = { 'hrsh7th/nvim-compe', 'L3MON4D3/LuaSnip' }, -- Asumiendo que usas compe y LuaSnip
+  dependencies = { 'hrsh7th/nvim-compe', 'L3MON4D3/LuaSnip', 'VonHeikemen/lsp-zero.nvim' }, -- Asumiendo que usas compe y LuaSnip
   opts = {},
   config = function()
     local function setup_autocmd(filetype, setup_func)
@@ -25,6 +25,7 @@ return {
     setup_autocmd('css', servers.css)
     setup_autocmd({ 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }, servers.eslint)
     setup_autocmd({ 'sh' }, servers.bash)
+    setup_autocmd({ "css", "html", "javascript", "javascriptreact", "typescriptreact" }, servers.emmet)
 
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -54,6 +55,35 @@ return {
         vim.cmd('LspRestart lua_ls')
         vim.notify('Vim modules are avaible')
       end, { desc = "Load vim modules" } }
+    })
+
+    keymap_set({
+      { 'n', '<leader>ml', function()
+        local lspconfig = require('lspconfig')
+        local lsp_zero = require('lsp-zero')
+
+        lsp_zero.on_attach(function(client, bufnr)
+          lsp_zero.default_keymaps({ buffer = bufnr })
+        end)
+
+        -- Configuración del servidor LSP para QML usando qmlls6
+        local configs = require('lspconfig.configs')
+
+        if not configs.qml6_lsp then
+          configs.qml6_lsp = {
+            default_config = {
+              cmd = { 'qmlls6' },                              -- Comando para iniciar el servidor
+              filetypes = { 'qml' },                           -- Tipos de archivo que manejará
+              root_dir = function(fname)
+                return lspconfig.util.find_git_ancestor(fname) -- Encuentra el directorio raíz del proyecto
+              end,
+              settings = {},
+            },
+          }
+        end
+
+        lspconfig.qml6_lsp.setup {}
+      end }
     })
   end,
 }

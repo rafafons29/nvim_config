@@ -1,5 +1,5 @@
 return (function(filename)
-  local file = io.open("/home/rafa/.config/nvim/lua/colors/" .. filename .. ".json", "r")
+  local file = io.open("/home/rafa/.config/colors/" .. filename .. ".json", "r")
   if not file then
     error("No se pudo leer el archivo " .. filename)
   end

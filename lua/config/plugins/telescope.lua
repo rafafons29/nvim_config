@@ -12,7 +12,7 @@ function M.setup()
     defaults = {
       sorting_strategy = "ascending",
       file_ignore_patterns = { "node_modules", "dist", ".git", ".next" },
-      path_display = function(opts, path)
+      path_display = function(_, path)
         local tail = require("telescope.utils").path_tail(path)
         path = string.format("%s (%s)", tail, path)
 

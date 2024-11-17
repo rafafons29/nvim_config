@@ -148,5 +148,13 @@ return {
       capabilities = lspf.capabilities,
       settings = lsp_esl.settings,
     })
+  end,
+  emmet = function()
+    local lsp_emmet = require("servers.lsp_emmet")
+    setup_server('emmet_ls', {
+      on_attach = lspf.on_attach,
+      capabilities = lspf.capabilities,
+      init_options = lsp_emmet.init_options
+    })
   end
 }
