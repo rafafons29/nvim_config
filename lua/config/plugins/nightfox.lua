@@ -1,5 +1,5 @@
 local nightfox = require("nightfox")
-local colors = require("colors.colors")("oxocarbon")
+local colors = require("colors.colors")("carbonfox")
 local M = {}
 
 function M.setup()
@@ -46,23 +46,26 @@ function M.setup()
     specs = {},
     groups = {
       carbonfox = (function(hl, c)
-        hl.CursorLineNr           = { fg = c.green2 }
+        hl.CursorLineNr           = { fg = c.focus }
 
-        hl.MiniIndentscopeSymbol  = { fg = '#252525' }
+        hl.MiniIndentscopeSymbol  = { fg = c.black5 }
         hl.LineNr                 = { fg = c.focus }
-        hl.LineNrAbove            = { fg = '#363636' }
-        hl.LineNrBelow            = { fg = '#363636' }
-        hl.TreesitterContext      = { bg = '#232326' }
+        hl.LineNrAbove            = { fg = c.black4 }
+        hl.LineNrBelow            = { fg = c.black4 }
+        hl.TreesitterContext      = { bg = c.bg }
 
-        hl.TelescopeNormal        = { bg = '#131313' }
-        hl.TelescopePromptBorder  = { bg = '#292929', fg = '#292929' }
-        hl.TelescopePromptNormal  = { bg = '#292929' }
+        hl.TelescopeNormal        = { bg = c.black6 }
+        hl.TelescopePromptBorder  = { bg = c.black3, fg = c.black3 }
+        hl.TelescopePromptNormal  = { bg = c.black3 }
         hl.TelescopePromptTitle   = { bg = c.red2, fg = c.bg }
-        hl.TelescopePreviewBorder = { bg = '#131313', fg = '#131313' }
+        hl.TelescopePreviewBorder = { bg = c.black6, fg = c.black6 }
         hl.TelescopePreviewTitle  = { bg = c.green1, fg = c.bg }
-        hl.TelescopeBorder        = { bg = '#131313', fg = '#131313' }
-        hl.TelescopeResultsNormal = { bg = '#131313', fg = '#b2b8ca' }
-        hl.TelescopeResultsBorder = { bg = '#131313', fg = '#131313' }
+        hl.TelescopeBorder        = { bg = c.black6, fg = c.black6 }
+        hl.TelescopeResultsNormal = { bg = c.black6, fg = c.white3 }
+        hl.TelescopeResultsBorder = { bg = c.black6, fg = c.black6 }
+
+        hl.CmpNormal              = { fg = c.active }
+        hl.MyBorder               = { fg = c.black2 }
 
         return hl
       end)({}, colors)

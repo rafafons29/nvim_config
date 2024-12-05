@@ -5,7 +5,7 @@ local function active_lsp(server_name)
   local servers = vim.lsp.get_clients()
   for _, server in pairs(servers) do
     if server.name == server_name then
-      -- Cuando este activo no se volvera a activar
+      vim.cmd("LspRestart " .. server_name)
       return
     end
   end

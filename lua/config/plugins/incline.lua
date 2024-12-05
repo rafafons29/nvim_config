@@ -32,7 +32,7 @@ function M.setup()
     highlight = {
       groups = {
         InclineNormal = { guibg = colors.bg, guifg = colors.focus },
-        InclineNormalNC = { guibg = colors.bg, guifg = colors.blue1 }
+        InclineNormalNC = { guibg = colors.bg, guifg = colors.inactive }
       }
     },
     window = {

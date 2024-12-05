@@ -29,6 +29,15 @@ end
 
 function M.setup()
   cmp.setup({
+    window = {
+      completion = {
+        border = "single", -- none, single, double, rounded, shadow
+        winhighlight = "Normal:CmpNormal,FloatBorder:MyBorder"
+      },
+      documentation = {
+        winhighlight = "Normal:CmpDocNormal"
+      }
+    },
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)

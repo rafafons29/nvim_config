@@ -1,4 +1,5 @@
 local tokyonight = require('tokyonight')
+local colors = require("colors.colors")("tokyonight")
 local M = {}
 
 function M.setup()
@@ -21,29 +22,32 @@ function M.setup()
     on_colors = function(colors) end,
 
     on_highlights = function(hl, c)
-      local prompt = "#24283b"
+      local prompt             = "#24283b"
       -- hl.Comment = { fg = c.gray }
-      hl.Constant = { fg = c.orange }
-      hl.String = { fg = c.yellow }
-      hl.Function = { fg = c.green }
-      hl.Keyword = { fg = c.red }
-      hl.Identifier = { fg = c.orange }
-      hl.Statement = { fg = c.red }
-      hl.Type = { fg = c.blue }
-      hl.Special = { fg = c.purple }
-      hl.Underlined = { fg = c.blue6 }
-      hl.LineNr = { fg = c.blue }
-      hl.VertSplit = { fg = c.red }
-      hl.Folded = { bg = c.bg_dark, fg = c.fg_dark }
-      hl.FoldColumn = { bg = c.bg_dark, fg = c.fg_dark }
+      hl.Constant              = { fg = c.orange }
+      hl.String                = { fg = c.yellow }
+      hl.Function              = { fg = c.green }
+      hl.Keyword               = { fg = c.red }
+      hl.Identifier            = { fg = c.orange }
+      hl.Statement             = { fg = c.red }
+      hl.Type                  = { fg = c.blue }
+      hl.Special               = { fg = c.purple }
+      hl.Underlined            = { fg = c.blue6 }
+      hl.LineNr                = { fg = c.blue }
+      hl.VertSplit             = { fg = c.red }
+      hl.Folded                = { bg = c.bg_dark, fg = c.fg_dark }
+      hl.FoldColumn            = { bg = c.bg_dark, fg = c.fg_dark }
 
-      hl.TreesitterContext = { bg = c.bg }
+      hl.CmpNormal             = { fg = colors.active }
+      hl.MyBorder              = { fg = colors.black2 }
 
-      hl.TelescopeNormal = {
+      hl.TreesitterContext     = { bg = c.bg }
+
+      hl.TelescopeNormal       = {
         bg = c.bg_dark,
         fg = c.fg_dark,
       }
-      hl.TelescopeBorder = {
+      hl.TelescopeBorder       = {
         bg = c.bg_dark,
         fg = c.bg_dark,
       }
@@ -54,7 +58,7 @@ function M.setup()
         bg = prompt,
         fg = prompt,
       }
-      hl.TelescopePromptTitle = {
+      hl.TelescopePromptTitle  = {
         bg = c.red,
         fg = c.bg_dark,
       }
