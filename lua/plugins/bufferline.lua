@@ -1,6 +1,8 @@
 return {
   'akinsho/bufferline.nvim',
   opts = function()
+    local theme = _G.theme_name or "catppuccin"
+    local colors = require("colors.colors")(theme)
     return {
       options = {
         mode = "tabs",
@@ -13,7 +15,7 @@ return {
       },
       highlights = {
         buffer_selected = {
-          fg = require("colors.colors")(theme_name).focus,
+          fg = colors.focus,
           bold = true,
         },
       },

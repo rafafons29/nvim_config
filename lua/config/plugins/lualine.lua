@@ -1,3 +1,4 @@
+local theme = _G.theme_name or "catppuccin"
 local function minimal_theme(colors)
   return {
     normal = {
@@ -33,7 +34,7 @@ local function minimal_theme(colors)
     },
   }
 end
-local colors = require("colors.colors")(theme_name)
+local colors = require("colors.colors")(theme)
 local linelua = require("lualine")
 local M = {}
 

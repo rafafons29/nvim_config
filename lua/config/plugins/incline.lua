@@ -1,7 +1,8 @@
+local theme = _G.theme_name or "catppuccin"
 local devicons = require('nvim-web-devicons')
 local incline = require('incline')
 
-local colors = require("colors.colors")(theme_name)
+local colors = require("colors.colors")(theme)
 
 local M = {}
 
